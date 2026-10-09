@@ -1,0 +1,18 @@
+@use '../../styles/tokens' as *;
+.facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; padding-block: 28px; border-top: 1px solid $line; border-bottom: 1px solid $line; }
+.facts li { display: flex; align-items: center; gap: 14px; padding-inline: 24px; border-left: 1px solid $line; }
+.facts li:first-child { padding-left: 0; border-left: none; }
+.facts .icon { width: 26px; height: 26px; color: $muted; }
+.facts li span { font-size: 12px; }
+.facts--compact { display: flex; flex-wrap: wrap; border: 0; padding-block: 0; gap: 10px 20px; }
+.facts--compact li { padding: 0; border: 0; gap: 7px; }
+.facts--compact .icon { width: 16px; height: 16px; }
+.facts--compact li span { font-size: 10px; }
+@media (max-width: 959px) { .facts:not(.facts--compact) li { padding-inline: 16px; gap: 10px; } .facts:not(.facts--compact) li:first-child { padding-left: 0; } }
+@include mobile {
+  .facts:not(.facts--compact) { grid-template-columns: 1fr 1fr; gap: 22px 0; padding-block: 24px; }
+  .facts:not(.facts--compact) li { padding-inline: 14px; gap: 10px; }
+  .facts:not(.facts--compact) li:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .facts:not(.facts--compact) li span { font-size: 11px; }
+  .facts:not(.facts--compact) .icon { width: 22px; height: 22px; }
+}

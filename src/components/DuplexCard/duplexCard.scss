@@ -1,0 +1,25 @@
+@use '../../styles/tokens' as *;
+.duplex-card { min-width: 0; }
+.duplex-card__image-link { display: block; position: relative; }
+.duplex-card__image { aspect-ratio: 1.4; }
+.duplex-card__image img { transition: transform .6s; }
+.duplex-card__image-link:hover img { transform: scale(1.025); }
+.duplex-card__image-arrow { position: absolute; top: 12px; right: 12px; display: grid; place-items: center; width: 34px; height: 34px; background: #fff; color: $ink; }
+.duplex-card__image-arrow .icon { width: 17px; height: 17px; }
+.duplex-card__body { padding-top: 23px; }
+.duplex-card__status { display: flex; align-items: center; gap: 7px; font-size: 8px; letter-spacing: .16em; font-weight: 650; text-transform: uppercase; color: $red; }
+.duplex-card__status--delivered { color: $muted; }
+.duplex-card__status .icon { width: 12px; height: 12px; }
+.duplex-card h3 { font-family: $serif; font-size: 33px; margin-top: 10px; letter-spacing: -.025em; }
+.duplex-card h3 a:hover { color: $red; }
+.duplex-card p { margin-top: 13px; margin-bottom: 20px; color: $muted; font-size: 12px; line-height: 1.8; max-width: 500px; }
+.duplex-card__actions { margin-top: 20px; padding-top: 12px; border-top: 1px solid $line; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.duplex-card__actions .btn { font-size: 11px; min-height: 40px; gap: 7px; }
+.duplex-card__actions .icon { width: 17px; height: 17px; }
+.duplex-card__actions .btn .icon { color: $red; }
+.duplex-card__actions .btn--primary { padding: 10px 15px; }
+.duplex-card__actions .btn--primary .icon { color: white; }
+.duplex-card__actions .text-link { border-bottom: 0; font-size: 11px; gap: 12px; }
+.duplex-card--compact .duplex-card__image { aspect-ratio: 1.65; }
+.duplex-card--compact p { margin-bottom: 0; }
+@include mobile { .duplex-card__body { padding-top: 18px; } .duplex-card h3 { font-size: 31px; } .duplex-card__actions { margin-top: 14px; } }

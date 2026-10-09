@@ -1,0 +1,49 @@
+@use '../../styles/tokens' as *;
+.video-tour-entry { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 15px; padding-block: 19px; border-bottom: 1px solid $line; }
+.video-tour-entry > div { display: flex; align-items: center; gap: 10px; font-size: 11px; color: $muted; }
+.video-tour-entry > div > .icon { color: $red; }
+.video-tour-entry > button { background: transparent; color: $ink; border: 0; font-size: 11px; cursor: pointer; }
+.video-tour-dialog { width: min(980px, calc(100% - 36px)); max-height: calc(100dvh - 36px); border: 0; padding: 0; background: $paper; color: $ink; overflow: auto; }
+.video-tour-dialog::backdrop { background: #111416d6; backdrop-filter: blur(5px); }
+.video-tour-dialog__heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; padding: 24px 30px; }
+.video-tour-dialog__heading .eyebrow { color: $red; font-size: 8px; margin-bottom: 10px; }
+.video-tour-dialog__heading h2 { font-family: $serif; font-size: 39px; letter-spacing: -.025em; }
+.video-tour-dialog__heading > button { display: grid; place-items: center; width: 40px; height: 40px; background: transparent; color: $ink; border: 1px solid $line; flex-shrink: 0; }
+.video-tour-dialog__player { position: relative; aspect-ratio: 16 / 9; min-height: 200px; background: #111416; }
+.video-tour-dialog__player iframe { display: block; width: 100%; height: 100%; position: absolute; inset: 0; border: 0; }
+.video-tour-dialog__poster { position: absolute; inset: 0; color: white; }
+.video-tour-dialog__poster-image { height: 100%; }
+.video-tour-dialog__poster-image .photo__note { z-index: 2; }
+.video-tour-dialog__poster::after { content: ''; position: absolute; inset: 0; background: #1114169e; }
+.video-tour-dialog__poster-copy { position: absolute; z-index: 1; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 25px; }
+.video-tour-dialog__play { display: grid; place-items: center; width: 57px; height: 57px; background: $red; border-radius: 50%; margin-bottom: 22px; }
+.video-tour-dialog__play .icon { width: 26px; height: 26px; }
+.video-tour-dialog__poster-copy h3 { font-family: $serif; font-size: clamp(32px, 3.5vw, 48px); }
+.video-tour-dialog__poster-copy p { margin-top: 14px; max-width: 380px; font-size: 12px; color: #ffffffda; }
+.video-tour-dialog__poster-copy > a { margin-top: 20px; }
+.video-tour-dialog__footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 30px; }
+.video-tour-dialog__footer > p { font-size: 10px; color: $muted; max-width: 240px; }
+.video-tour-dialog__footer > div { display: flex; align-items: center; gap: 22px; }
+.video-tour-dialog__footer > div > a { display: flex; align-items: center; gap: 8px; font-size: 10px; }
+.video-tour-dialog__footer > div > a .icon { color: $red; width: 14px; height: 14px; }
+.video-tour-dialog__footer .btn { font-size: 11px; min-height: 44px; }
+@media (max-width: 959px) { .video-tour-dialog__footer { align-items: flex-start; } .video-tour-dialog__footer > div { gap: 15px; } }
+@include mobile {
+  .video-tour-entry > div { font-size: 10px; }
+  .video-tour-dialog { width: calc(100% - 24px); max-height: calc(100dvh - 24px); }
+  .video-tour-dialog__heading { padding: 22px 20px; }
+  .video-tour-dialog__heading h2 { font-size: 33px; }
+  .video-tour-dialog__heading > button { width: 35px; height: 35px; }
+  .video-tour-dialog__player { min-height: 200px; }
+  .video-tour-dialog__poster { min-height: 200px; }
+  .video-tour-dialog__poster-copy { padding: 15px; }
+  .video-tour-dialog__play { width: 42px; height: 42px; margin-bottom: 14px; }
+  .video-tour-dialog__play .icon { width: 21px; height: 21px; }
+  .video-tour-dialog__poster-copy h3 { font-size: 29px; }
+  .video-tour-dialog__poster-copy p { font-size: 10px; margin-top: 10px; }
+  .video-tour-dialog__poster-copy > a { min-height: 38px; font-size: 10px; margin-top: 12px; padding-block: 9px; }
+  .video-tour-dialog__footer { padding: 20px; flex-direction: column; gap: 16px; }
+  .video-tour-dialog__footer > p { max-width: none; font-size: 9px; }
+  .video-tour-dialog__footer > div { width: 100%; flex-direction: column; align-items: stretch; gap: 14px; }
+  .video-tour-dialog__footer > div > a { justify-content: center; }
+}

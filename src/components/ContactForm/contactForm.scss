@@ -1,0 +1,19 @@
+@use '../../styles/tokens' as *;
+.contact-form { padding: 42px; background: $paper; }
+.contact-form__heading .eyebrow { color: $red; font-size: 8px; }
+.contact-form__heading h2 { font-family: $serif; font-size: 39px; line-height: 1.05; letter-spacing: -.025em; margin-top: 17px; }
+.contact-form__heading p { margin: 17px 0 28px; font-size: 11px; color: $muted; }
+.contact-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.contact-form__field { display: flex; flex-direction: column; gap: 9px; margin-bottom: 22px; min-width: 0; }
+.contact-form__field label { font-size: 10px; font-weight: 650; }
+.contact-form__field label > span:not(.contact-form__optional) { color: $red; }
+.contact-form__optional { color: $muted; font-weight: 400; }
+.contact-form input, .contact-form select, .contact-form textarea { width: 100%; min-width: 0; border: 1px solid #d7d6cf; padding: 14px; background: #fff; color: $ink; border-radius: 0; font-size: 11px; }
+.contact-form input, .contact-form select { height: 49px; }
+.contact-form textarea { resize: vertical; min-height: 130px; }
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: #8b8e89; }
+.contact-form > .btn { width: 100%; justify-content: flex-start; }
+.contact-form > .btn .icon:last-child { margin-left: auto; width: 17px; height: 17px; }
+.contact-form__note { font-size: 9px; color: $muted; margin-top: 14px; line-height: 1.8; }
+@media (max-width: 959px) { .contact-form { padding: 34px; } }
+@include mobile { .contact-form { padding: 30px 22px; } .contact-form__heading h2 { font-size: 35px; } .contact-form__row { grid-template-columns: 1fr; gap: 0; } }

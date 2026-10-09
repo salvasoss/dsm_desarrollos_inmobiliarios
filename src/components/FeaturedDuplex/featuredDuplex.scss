@@ -1,0 +1,22 @@
+@use '../../styles/tokens' as *;
+.featured-duplex { display: grid; grid-template-columns: 1.55fr 1fr; background: $paper; margin-bottom: 30px; }
+.featured-duplex__image-link { position: relative; min-width: 0; }
+.featured-duplex__image { height: 100%; min-height: 640px; }
+.featured-duplex__image img { object-position: 40% center; }
+.featured-duplex__image-label { position: absolute; bottom: 30px; left: 30px; background: white; color: $ink; font-size: 10px; display: flex; align-items: center; gap: 35px; padding: 14px 20px; }
+.featured-duplex__image-label .icon { color: $red; width: 17px; height: 17px; }
+.featured-duplex__content { padding: 44px 36px; display: flex; flex-direction: column; align-items: stretch; justify-content: center; }
+.featured-duplex__content .eyebrow { color: $red; font-size: 9px; letter-spacing: .14em; }
+.featured-duplex h2 { font-family: $serif; font-size: clamp(34px, 3.2vw, 49px); letter-spacing: -.035em; margin-top: 15px; }
+.featured-duplex__location { display: flex; gap: 7px; font-size: 10px; color: $muted; margin-top: 15px; align-items: flex-start; }
+.featured-duplex__location .icon { width: 14px; height: 14px; margin-top: 2px; }
+.featured-duplex .facts { margin-top: 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px 0; padding-block: 24px; }
+.featured-duplex .facts li { padding: 0 10px; gap: 9px; }
+.featured-duplex .facts li:nth-child(odd) { border: 0; padding-left: 0; }
+.featured-duplex .facts .icon { width: 21px; height: 21px; }
+.featured-duplex .facts li span { font-size: 10px; }
+.featured-duplex__content > p { font-size: 12px; color: $muted; margin: 22px 0; }
+.featured-duplex__content .btn { margin-top: 10px; }
+.featured-duplex__note { font-size: 9px; color: $muted; margin-top: 16px; text-align: center; }
+@media (max-width: 959px) { .featured-duplex { grid-template-columns: 1fr; } .featured-duplex__image { min-height: 0; height: 420px; } .featured-duplex__content { padding: 34px; } .featured-duplex h2 { font-size: 48px; } .featured-duplex__content .facts { grid-template-columns: repeat(4, 1fr); } .featured-duplex__content .facts li { border-left: 1px solid $line; padding-inline: 15px; } .featured-duplex__content .facts li:first-child { padding-left: 0; border-left: 0; } }
+@include mobile { .featured-duplex__image { height: 310px; } .featured-duplex__image-label { bottom: 25px; left: 20px; } .featured-duplex__content { padding: 30px 22px; } .featured-duplex h2 { font-size: 40px; } .featured-duplex__content .facts { grid-template-columns: 1fr 1fr; } .featured-duplex__content .facts li:nth-child(odd) { border-left: 0; padding-left: 0; } }

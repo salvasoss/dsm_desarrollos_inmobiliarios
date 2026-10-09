@@ -1,0 +1,10 @@
+$red: #dd2634;
+$ink: #242628;
+$paper: #f5f3ef;
+$muted: #71736f;
+$line: #deddd8;
+$serif: 'Cormorant Garamond', Georgia, serif;
+$sans: 'Manrope Variable', Arial, sans-serif;
+
+@mixin desktop { @media (min-width: 960px) { @content; } }
+@mixin mobile { @media (max-width: 639px) { @content; } }

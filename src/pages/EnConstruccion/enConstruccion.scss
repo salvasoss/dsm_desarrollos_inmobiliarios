@@ -1,0 +1,5 @@
+@use '../../styles/tokens' as *;
+.construction-intro__contact { margin-top: 28px; }
+.construction-catalog { padding-block: 10px 86px; }
+.catalog-note { margin-top: 36px; padding-top: 20px; border-top: 1px solid $line; color: $muted; font-size: 10px; }
+@include mobile { .construction-catalog { padding-bottom: 56px; } .construction-intro__contact { margin-top: 24px; } }

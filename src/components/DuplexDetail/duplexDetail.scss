@@ -1,0 +1,38 @@
+@use '../../styles/tokens' as *;
+.detail-heading { padding: 24px 0 40px; display: flex; justify-content: space-between; align-items: end; gap: 25px; }
+.detail-heading .eyebrow { color: $red; margin-bottom: 18px; font-size: 8px; }
+.detail-heading h1 { font-size: clamp(46px, 5vw, 76px); }
+.detail-heading p { display: flex; align-items: center; gap: 8px; font-size: 11px; color: $muted; margin-top: 17px; }
+.detail-heading p .icon { width: 15px; height: 15px; }
+.detail-heading__status { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; padding: 9px 12px; background: #dd263408; border: 1px solid #dd263450; color: $red; font-size: 8px; text-transform: uppercase; letter-spacing: .09em; }
+.detail-heading__status--sold { color: $muted; border-color: $line; background: $paper; }
+.detail-heading__status .icon { width: 13px; height: 13px; }
+.detail-facts { margin-top: 30px; }
+.detail-description { display: grid; grid-template-columns: 1fr 1.25fr; gap: 95px; padding-block: 82px; }
+.detail-description .eyebrow { margin-bottom: 18px; }
+.detail-description .display { font-size: clamp(42px, 4vw, 60px); }
+.detail-description > div > p { font-size: 13px; color: $muted; }
+.detail-description ul { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 25px; margin-block: 26px; }
+.detail-description li { display: flex; align-items: flex-start; gap: 9px; font-size: 11px; }
+.detail-description li .icon { color: $red; width: 15px; height: 15px; margin-top: 3px; }
+.detail-description .btn { font-size: 11px; }
+.detail-description .btn .icon:last-child { color: $red; }
+.detail-materials { display: grid; grid-template-columns: 1fr 1.1fr; background: $paper; }
+.detail-materials__image { min-height: 665px; }
+.detail-materials__image img { object-position: 25% center; }
+.detail-materials__content { padding: 42px; }
+.detail-materials__content .eyebrow { color: $red; font-size: 8px; margin-bottom: 20px; }
+.detail-materials__content .display { font-size: clamp(39px, 3.3vw, 51px); }
+.detail-materials__list { margin-top: 24px; }
+.detail-materials__list > div { display: flex; align-items: flex-start; gap: 15px; padding-block: 17px; border-top: 1px solid $line; }
+.detail-materials__list .icon { width: 20px; height: 20px; color: $muted; margin-top: 1px; }
+.detail-materials__list h3 { font-family: $sans; font-size: 11px; font-weight: 650; line-height: 1.4; }
+.detail-materials__list p { font-size: 10px; color: $muted; margin-top: 7px; line-height: 1.9; }
+.detail-related { padding-top: 84px; }
+.detail-video { padding-top: 75px; }
+.detail-video h2 { margin-block: 20px; }
+.detail-video video { display: block; width: 100%; max-height: 700px; background: $ink; }
+.detail-back { padding-block: 34px 68px; }
+.detail-back .text-link { border-bottom: 0; font-size: 11px; }
+@media (max-width: 959px) { .detail-heading { align-items: flex-start; flex-direction: column; gap: 20px; } .detail-description { gap: 40px; padding-block: 65px; } .detail-description ul { grid-template-columns: 1fr; } .detail-materials { grid-template-columns: 1fr; } .detail-materials__image { min-height: 0; height: 320px; } .detail-materials__content { padding: 36px; } }
+@include mobile { .detail-heading { padding-block: 20px 30px; } .detail-heading h1 { font-size: 48px; } .detail-heading p { font-size: 10px; } .detail-facts { margin-top: 24px; } .detail-description { grid-template-columns: 1fr; gap: 24px; padding-block: 52px; } .detail-description .display { font-size: 43px; } .detail-materials__image { height: 235px; } .detail-materials__content { padding: 30px 24px; } .detail-materials__content .display { font-size: 39px; } .detail-related { padding-top: 58px; } .detail-back { padding-bottom: 48px; } }

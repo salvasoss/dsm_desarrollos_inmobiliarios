@@ -1,0 +1,6 @@
+@use '../../styles/tokens' as *;
+.youtube-link { gap: 12px; }
+.youtube-link .icon { width: 17px; height: 17px; }
+.youtube-link--pending { display: inline-flex; align-items: center; gap: 10px; color: $muted; padding: 12px 0; font-size: 11px; }
+.youtube-link--pending .icon { color: $red; }
+@include mobile { .youtube-link--pending { font-size: 10px; } }

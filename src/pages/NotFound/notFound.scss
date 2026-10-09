@@ -1,0 +1,5 @@
+.not-found { padding-block: 100px; min-height: 55vh; }
+.not-found .eyebrow { margin-bottom: 24px; }
+.not-found .display { max-width: 800px; }
+.not-found > p { margin-block: 25px; max-width: 500px; }
+@media (max-width: 639px) { .not-found { padding-block: 65px; } }

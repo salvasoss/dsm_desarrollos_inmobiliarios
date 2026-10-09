@@ -1,0 +1,36 @@
+@use '../../styles/tokens' as *;
+.gallery { display: grid; grid-template-columns: 1.8fr 1fr; gap: 18px; min-height: 535px; }
+.gallery__main { position: relative; min-width: 0; }
+.gallery__cover { height: 100%; min-height: 535px; }
+.gallery__cover img { object-position: 40% center; }
+.gallery__expand { position: absolute; bottom: 28px; left: 24px; padding: 11px 16px; display: flex; align-items: center; gap: 9px; font-size: 10px; background: white; color: $ink; pointer-events: none; }
+.gallery__expand .icon { width: 16px; height: 16px; }
+.gallery__side { display: flex; flex-direction: column; gap: 18px; }
+.gallery__thumbnails { display: flex; gap: 12px; min-height: 200px; height: 220px; }
+.gallery__thumbnails .photo { flex: 1; height: 100%; }
+.gallery__contact { padding: 28px; background: $ink; color: white; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+.gallery__contact .eyebrow { font-size: 8px; color: #c0c4c1; margin-bottom: 17px; letter-spacing: .18em; }
+.gallery__contact h2 { font-family: $serif; font-size: 35px; letter-spacing: -.025em; line-height: 1.06; max-width: 320px; }
+.gallery__contact p { font-size: 11px; color: #c2c5c3; margin-top: 17px; max-width: 320px; }
+.gallery__contact .btn { margin-top: 24px; width: 100%; padding-inline: 12px; font-size: 11px; }
+.gallery__contact--full h2 { font-size: 45px; }
+.gallery-dialog { width: min(1250px, calc(100% - 30px)); max-height: calc(100dvh - 30px); padding: 55px 24px 20px; border: 0; background: #151718; color: white; }
+.gallery-dialog::backdrop { background: #101213eb; }
+.gallery-dialog__close { position: absolute; top: 13px; right: 17px; width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid #ffffff45; background: transparent; color: white; }
+.gallery-dialog__photo { position: relative; }
+.gallery-dialog__photo img { width: 100%; max-height: calc(100dvh - 185px); object-fit: contain; }
+.gallery-dialog__photo > span { position: absolute; bottom: 10px; right: 10px; background: #151718ad; font-size: 9px; padding: 4px 8px; }
+.gallery-dialog__controls { display: flex; align-items: center; justify-content: center; gap: 26px; font-size: 12px; margin-top: 18px; }
+.gallery-dialog__controls button { display: grid; place-items: center; width: 38px; height: 38px; color: white; background: transparent; border: 1px solid #ffffff45; }
+@media (max-width: 959px) { .gallery { grid-template-columns: 1.4fr 1fr; min-height: 470px; gap: 14px; } .gallery__cover { min-height: 470px; } .gallery__side { gap: 14px; } .gallery__thumbnails { min-height: 140px; height: 160px; } .gallery__contact { padding: 24px; } .gallery__contact h2 { font-size: 31px; } .gallery__contact .btn { font-size: 10px; gap: 7px; } }
+@include mobile {
+  .gallery { grid-template-columns: 1fr; min-height: 0; gap: 14px; }
+  .gallery__cover { height: 310px; min-height: 0; }
+  .gallery__expand { left: 18px; bottom: 24px; font-size: 9px; }
+  .gallery__side { gap: 14px; }
+  .gallery__thumbnails { height: 175px; }
+  .gallery__contact { padding: 28px 24px; }
+  .gallery__contact h2, .gallery__contact--full h2 { font-size: 37px; }
+  .gallery__contact .btn { font-size: 12px; }
+  .gallery-dialog { padding-inline: 10px; }
+}

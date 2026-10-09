@@ -1,0 +1,29 @@
+@use '../../styles/tokens' as *;
+.contact-band { position: relative; background: $paper; padding-block: 76px; overflow: hidden; }
+.contact-band__inner { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+.contact-band__copy { position: relative; max-width: 780px; }
+.contact-band .eyebrow { margin-bottom: 20px; }
+.contact-band .display { font-size: clamp(40px, 4vw, 61px); }
+.contact-band p { margin-top: 20px; max-width: 600px; color: $muted; font-size: 13px; }
+.contact-band .actions { margin-top: 28px; gap: 20px; }
+.contact-band__link { font-size: 10px; color: $muted; border-bottom: 1px solid #b4b7b2; padding-block: 6px; }
+.contact-band__link:hover { color: $red; }
+.contact-band__mark { font-family: $serif; font-size: clamp(80px, 10vw, 155px); line-height: 1; color: #2426280e; letter-spacing: -.06em; }
+.contact-band__mark span { color: #dd263445; }
+.contact-band--image .contact-band__copy { max-width: 68%; }
+.contact-band__image { position: absolute; top: 0; right: 0; width: 48%; height: 100%; }
+.contact-band--image::after { content: ''; position: absolute; top: 0; right: 0; width: 60%; height: 100%; background: linear-gradient(90deg, $paper 0%, #f5f3eff0 20%, #f5f3ef05 100%); pointer-events: none; }
+.contact-band--image .contact-band__inner { z-index: 1; }
+.contact-band--dark { background: $ink; color: #fff; }
+.contact-band--dark p, .contact-band--dark .contact-band__link { color: #c2c5c4; }
+.contact-band--dark .contact-band__mark { color: #ffffff0d; }
+@include mobile {
+  .contact-band { padding-block: 54px; }
+  .contact-band--image .contact-band__copy { max-width: 100%; }
+  .contact-band .display { font-size: 42px; }
+  .contact-band .eyebrow { font-size: 8px; }
+  .contact-band__image { width: 100%; opacity: .25; }
+  .contact-band--image::after { width: 100%; background: linear-gradient(90deg, $paper 0%, #f5f3efd9 100%); }
+  .contact-band__mark { display: none; }
+  .contact-band .actions { align-items: flex-start; flex-direction: column; gap: 10px; }
+}

@@ -1,0 +1,7 @@
+@use '../../styles/tokens' as *;
+.photo { position: relative; overflow: hidden; min-width: 0; background: #dedbd5; }
+.photo img { width: 100%; height: 100%; object-fit: cover; }
+.photo__note { position: absolute; right: 10px; bottom: 9px; font-size: 8px; padding: 3px 7px; line-height: 1.4; letter-spacing: .025em; color: #fff; background: #242628a6; pointer-events: none; }
+.photo--button { display: block; width: 100%; padding: 0; border: 0; text-align: left; }
+.photo--button img { transition: transform .6s; }
+.photo--button:hover img { transform: scale(1.025); }

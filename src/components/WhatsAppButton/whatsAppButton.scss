@@ -1,0 +1,11 @@
+@use '../../styles/tokens' as *;
+.contact-dialog { max-width: min(550px, calc(100% - 32px)); padding: 0; border: 0; background: $paper; color: $ink; overflow: auto; max-height: calc(100dvh - 40px); }
+.contact-dialog::backdrop { background: #161819b0; backdrop-filter: blur(4px); }
+.contact-dialog__inner { padding: 44px; }
+.contact-dialog .eyebrow { color: $red; margin-bottom: 16px; }
+.contact-dialog h2 { font-family: $serif; font-size: 42px; padding-right: 10px; }
+.contact-dialog p { margin: 20px 0; font-size: 13px; color: $muted; }
+.contact-dialog textarea { resize: vertical; width: 100%; border: 1px solid $line; background: white; color: $ink; padding: 16px; font-size: 13px; margin-bottom: 20px; }
+.contact-dialog__close { position: absolute; top: 16px; right: 16px; display: grid; place-items: center; width: 36px; height: 36px; background: transparent; color: $ink; border: 0; }
+.contact-dialog__feedback { display: block; min-height: 22px; font-size: 11px; margin-top: 10px; }
+@include mobile { .contact-dialog__inner { padding: 32px 24px 24px; } .contact-dialog h2 { font-size: 36px; } }

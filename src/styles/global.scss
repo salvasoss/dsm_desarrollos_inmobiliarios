@@ -1,0 +1,78 @@
+@use './tokens' as *;
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+body { margin: 0; color: $ink; background: #fff; font-family: $sans; font-size: 14px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+button, input, select, textarea { font: inherit; }
+button, a, input, textarea, select { -webkit-tap-highlight-color: transparent; }
+button, a { touch-action: manipulation; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; }
+img { max-width: 100%; }
+figure, p, h1, h2, h3, h4 { margin: 0; }
+h1, h2, h3, h4 { font-weight: 400; line-height: 1.06; }
+ul { margin: 0; padding: 0; list-style: none; }
+::selection { background: #dd263429; }
+:focus-visible { outline: 2px solid $red; outline-offset: 5px; }
+main:focus { outline: none; }
+.wrap { width: min(1280px, calc(100% - 112px)); margin-inline: auto; }
+.section { padding-block: 96px; }
+.eyebrow { display: block; font-size: 10px; font-weight: 650; letter-spacing: .22em; line-height: 1.6; text-transform: uppercase; }
+.display { font-family: $serif; font-size: clamp(44px, 4.7vw, 72px); letter-spacing: -.035em; line-height: .98; }
+.display em { font-weight: 400; }
+.red-dot { color: $red; }
+.intro { max-width: 650px; margin-top: 20px; font-size: 15px; color: $muted; }
+.section-heading { margin-bottom: 38px; }
+.section-heading .eyebrow { margin-bottom: 16px; }
+.section-heading p { margin-top: 18px; color: $muted; max-width: 670px; }
+.section-footer { display: flex; justify-content: flex-end; margin-top: 28px; }
+.text-link { display: inline-flex; gap: 20px; align-items: center; padding-block: 9px; border-bottom: 1px solid currentColor; font-size: 12px; font-weight: 600; transition: color .2s; }
+.text-link .icon { color: $red; }
+.text-link:hover { color: $red; }
+.btn { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; gap: 12px; border: 1px solid transparent; padding: 14px 24px; font-size: 12px; font-weight: 650; line-height: 1.4; transition: background .2s, border-color .2s, color .2s; }
+.btn--primary { background: $red; color: #fff; }
+.btn--primary:hover { background: #bd1b28; }
+.btn--outline { background: transparent; border-color: #a8a9a4; color: $ink; }
+.btn--outline:hover { border-color: $ink; background: #24262806; }
+.btn--light { background: #fff; color: $ink; }
+.btn--light:hover { background: $paper; }
+.btn--ghost { padding: 6px 0; min-height: 40px; color: inherit; background: transparent; }
+.btn--ghost:hover { color: $red; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.icon { flex-shrink: 0; width: 20px; height: 20px; }
+.breadcrumbs { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-size: 11px; color: $muted; padding-block: 26px; }
+.breadcrumbs a:hover { color: $red; }
+.breadcrumbs span[aria-current] { color: $ink; }
+.page-intro { padding: 34px 0 55px; }
+.page-intro .eyebrow { margin-bottom: 18px; color: $red; }
+.page-intro .display { max-width: 900px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.skip-link { position: fixed; top: 10px; left: 10px; z-index: 100; padding: 12px; background: $ink; color: white; transform: translateY(-160%); }
+.skip-link:focus { transform: translateY(0); }
+.empty-state { padding: 50px; border: 1px solid $line; background: $paper; }
+.empty-state h2 { font-family: $serif; font-size: 36px; margin-bottom: 16px; }
+.empty-state .btn { margin-top: 22px; }
+
+@media (max-width: 959px) {
+  .wrap { width: calc(100% - 64px); }
+  .section { padding-block: 72px; }
+}
+@include mobile {
+  html { scroll-padding-top: 90px; }
+  .wrap { width: calc(100% - 40px); }
+  .section { padding-block: 58px; }
+  .display { font-size: clamp(40px, 11vw, 52px); }
+  .eyebrow { font-size: 9px; letter-spacing: .19em; }
+  .intro { font-size: 14px; margin-top: 18px; }
+  .btn { min-height: 50px; padding: 14px 19px; font-size: 12px; }
+  .page-intro { padding: 22px 0 38px; }
+  .breadcrumbs { padding-block: 22px; font-size: 10px; }
+  .section-heading { margin-bottom: 28px; }
+  .section-heading p { font-size: 13px; }
+  .empty-state { padding: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
