@@ -4,6 +4,10 @@ import { resolve, join } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 const dist = join(root, 'dist');
 let html = await readFile(join(dist, 'index.html'), 'utf8');
+// La copia portable usa HashRouter y monta React sin hidratar el HTML del inicio.
+html = html.replace(/<!--DSM_APP_START-->[\s\S]*?<!--DSM_APP_END-->/, '').replace(' data-prerendered="true"', '');
+html = html.replace(/<script[^>]+id="dsm-structured-data"[^>]*>[\s\S]*?<\/script>/g, '').replace(/<link[^>]+rel="canonical"[^>]*>/g, '').replace(/<link[^>]+rel="preload"[^>]*>/g, '');
+html = html.replace(/<meta[^>]+(?:property="og:(?:url|image[^\"]*)"|name="twitter:image[^\"]*")[^>]*>/g, '').replace(/(<meta[^>]+name="robots"[^>]+content=")[^"]+/, '$1noindex, follow');
 const mime = { webp: 'image/webp', svg: 'image/svg+xml', png: 'image/png', woff2: 'font/woff2', woff: 'font/woff' };
 async function dataUrl(path) {
   const extension = path.split('.').pop();

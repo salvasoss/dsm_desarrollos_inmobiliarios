@@ -2,9 +2,11 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { normalizeWhatsAppNumber } from './src/utils/whatsapp.js';
 import { parseYouTubeUrl } from './src/utils/youtube.js';
+import { normalizeSiteUrl } from './src/utils/seo.js';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
+  if (env.VITE_SITE_URL && !normalizeSiteUrl(env.VITE_SITE_URL)) throw new Error('VITE_SITE_URL: ingresá el dominio definitivo con https://, sin rutas, parámetros ni fragmentos.');
   if (env.VITE_WHATSAPP_NUMBER && !normalizeWhatsAppNumber(env.VITE_WHATSAPP_NUMBER)) {
     throw new Error('VITE_WHATSAPP_NUMBER: ingresá entre 10 y 15 dígitos, con código de país y sin cero inicial.');
   }

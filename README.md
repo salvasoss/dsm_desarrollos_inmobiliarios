@@ -22,24 +22,26 @@ npm run dev
 Abrí la dirección que indique Vite, normalmente `http://localhost:5173`.
 
 ```bash
-npm test              # Mensajes de WhatsApp y enlaces/reproductores de YouTube
-npm run build         # Genera dist/
+npm test              # WhatsApp, YouTube, metadatos y sitemap
+npm run build         # Genera dist/ con HTML completo para cada página
 npm run preview       # Revisa la versión compilada con un servidor local
 npm run preview:html  # Regenera DSM_preview.html a partir de dist/
 ```
 
-## Activar WhatsApp
+## Contacto por WhatsApp
 
-Copiá `.env.example` a `.env` y completá:
+El contacto de DSM ya está configurado como **+54 9 351 306 7123**. Los botones y el formulario abren WhatsApp directamente con el mensaje preparado, sin mostrar el popup de consulta. No necesitás crear un `.env` para activar este número.
+
+Para cambiar el teléfono o definir el dominio, copiá `.env.example` a `.env` y editá:
 
 ```dotenv
-VITE_WHATSAPP_NUMBER=NUMERO_INTERNACIONAL_DE_DSM
+VITE_WHATSAPP_NUMBER=5493513067123
 VITE_SITE_URL=https://TU_DOMINIO
 ```
 
-El número tiene que incluir código de país. Se aceptan dígitos, espacios, `+`, paréntesis, puntos y guiones; se normaliza a dígitos. Para un celular argentino, usá `549` + código de área + número, sin el `0` de área ni el `15` local. Confirmá el formato con el número real de DSM.
+El número tiene que incluir código de país. Se aceptan dígitos, espacios, `+`, paréntesis, puntos y guiones; se normaliza a dígitos. Para un celular argentino, usá `549` + código de área + número, sin el `0` de área ni el `15` local.
 
-**El número está vacío por decisión del usuario.** Hasta configurarlo, los botones muestran la consulta lista para revisar/copiar. No se usa un destinatario inventado. Una vez configurado y recompilado, los botones abren `wa.me` con el mensaje correspondiente y el formulario abre WhatsApp con nombre, teléfono opcional, propiedad de interés y consulta. El visitante decide cuándo enviar el mensaje en WhatsApp.
+`src/config/site.js` conserva ese número como valor predeterminado si `VITE_WHATSAPP_NUMBER` no está definida o queda vacía. Los botones abren `wa.me` con la consulta correspondiente; el formulario agrega nombre, teléfono opcional, propiedad de interés y mensaje. El visitante confirma el envío desde WhatsApp.
 
 Las variables `VITE_` son públicas y se incorporan al compilar. El teléfono comercial es público; no pongas secretos en ellas. Después de editar `.env`, reiniciá Vite; después de cambiar variables en Cloudflare, hacé una nueva compilación.
 
@@ -50,7 +52,7 @@ Las variables `VITE_` son públicas y se incorporan al compilar. El teléfono co
 | Inicio | `/` | CTA a venta y construcción → 2 entregados → 3 en construcción → contacto |
 | En venta | `/en-venta` | Última unidad destacada, materiales, ficha y coordinación de visita |
 | En construcción | `/en-construccion` | Catálogo de las 3 obras y contacto para cada proyecto |
-| Entregados | `/entregados` | Las 2 obras con datos, características, collage ampliable y enlace a su recorrido de YouTube |
+| Entregados | `/entregados` | «Proyectos Entregados», centrado: las 2 obras con datos, collage ampliable, acceso visible a la galería y recorrido arriba de las imágenes |
 | Contacto | `/contacto` | Contacto directo y formulario que prepara un mensaje para WhatsApp |
 | Ficha de venta/construcción | `/duplex/:duplexId` | Popup automático de YouTube, galería ampliable, características, materiales cuando hay datos y WhatsApp contextual |
 
@@ -73,6 +75,9 @@ Cada componente con estilos tiene su archivo JSX y SCSS en la misma carpeta. `Ap
 | `Main` | `pages/Main/Main` | Compone el inicio |
 | — | `DeliveredProject` y `PhotoCollage` | Presentan cada obra entregada completa dentro de la misma página |
 | — | `VideoTour` | Abre el recorrido al ingresar a una ficha y permite cerrarlo o volver a abrirlo |
+| — | `AccentText` | Destaca palabras importantes de los títulos con el rojo de DSM |
+| — | `ScrollReveal` | Anima bloques al entrar en pantalla y respeta la preferencia de movimiento reducido |
+| — | `LocalContent` | Presenta contenido sobre Córdoba, Docta y preguntas frecuentes de cada sección |
 
 Se reutilizan las mismas tarjetas en el inicio y los catálogos. Los datos son locales y no tienen demoras simuladas ni necesitan un backend. Vite reemplaza al compilador de CRA para facilitar el desarrollo y generar archivos estáticos.
 
@@ -84,6 +89,8 @@ Se reutilizan las mismas tarjetas en el inicio y los catálogos. Los datos son l
 - **Recorridos de YouTube:** completá `youtubeTourUrl` en cada obra con el enlace a su video o lista de reproducción. Los entregados usan ese enlace como botón a YouTube; las fichas de venta y construcción lo usan en el popup automático. Ver la configuración debajo.
 - **Video adicional MP4/WebM:** la ficha conserva el campo opcional `videoUrl` para un archivo propio, junto con `videoPoster` y `videoCaptions` (VTT). No se usa ese campo para enlaces de YouTube.
 - **Paleta y tipografías:** `src/styles/_tokens.scss`.
+- **Textos locales y preguntas frecuentes:** `src/data/siteContent.js`.
+- **Títulos y descripciones para buscadores:** `src/utils/seo.js`. Las fichas toman el nombre, el estado y las características del catálogo.
 - **Mensajes de WhatsApp:** `src/utils/whatsapp.js`. Las consultas sobre obras entregadas llevan el interés a los proyectos disponibles.
 
 Las imágenes incluidas son **ilustrativas**, tomadas de la propuesta visual. Los textos, las tipologías y las especificaciones parten del boceto facilitado. Antes de publicar, reemplazá las imágenes por fotos de las obras correspondientes y confirmá características, ubicación y disponibilidad. Los nombres Tipo A/B/C y Proyecto 01/02 son editables.
@@ -101,7 +108,34 @@ La dirección general del canal (`youtube.com/@...` o `/channel/...`) no identif
 
 Con un recorrido asignado, el reproductor solicita inicio automático **sin sonido** para respetar las restricciones habituales del navegador. El visitante puede activar el sonido desde los controles. Puede cerrar el popup con la cruz, Escape, el fondo o «Seguir viendo la ficha», y volver a abrirlo desde «Ver recorrido». Al cerrar se retira el reproductor para detener la reproducción. Al ingresar a otra ficha, el popup vuelve a abrirse con el recorrido correspondiente.
 
-Los collages de Entregados usan todas las imágenes disponibles en `gallery` y permiten ampliarlas y recorrerlas. La muestra incluye dos imágenes ilustrativas por proyecto; agregá las fotos reales en esa lista para ampliar cada collage.
+Los collages de Entregados muestran dos imágenes de portada; el botón rojo «Ver galería completa» abre un carrusel con **todas** las imágenes de `gallery`. El contador refleja la cantidad real. La muestra incluye dos imágenes ilustrativas por proyecto; agregá las fotos reales a esa lista para ampliar el recorrido. Cada imagen también abre directamente el carrusel.
+
+## Estilo e interacción
+
+El encabezado de Entregados está centrado y destaca «Entregados» en rojo. Las palabras importantes de los títulos del resto del sitio usan el mismo acento. Los accesos a galerías y recorridos tienen botones rojos, iconos y una ubicación visible.
+
+Los botones tienen transiciones de color, elevación, sombra y movimiento del icono. Las galerías y los menús conservan sus controles de teclado y los indicadores de foco. Las animaciones de entrada se aplican a títulos, tarjetas, galerías, formularios y bloques de contenido mediante `IntersectionObserver`. El contenido permanece visible sin JavaScript. La preferencia `prefers-reduced-motion` desactiva las animaciones y el scroll suave.
+
+## SEO local e indexación
+
+`npm run build` compila React y genera el HTML completo de las cinco páginas y de las cuatro fichas activas. Cada URL tiene su propio título, descripción, encabezado principal, contenido y datos estructurados antes de ejecutar JavaScript. React hidrata ese HTML para habilitar la navegación y las interacciones.
+
+La implementación incluye:
+
+- Texto específico sobre Córdoba, Docta, las tipologías y las características constructivas conocidas; preguntas frecuentes y enlaces entre páginas relacionadas.
+- `alt` descriptivo y `title` en todas las imágenes, dimensiones reales, formatos WebP, carga diferida y prioridad de la imagen principal. Las imágenes ilustrativas siguen identificadas como tales.
+- Metadatos Open Graph y Twitter, idioma `es-AR`, títulos y descripciones únicos, y actualización de esos datos al navegar dentro de React.
+- JSON-LD de la organización, el sitio y cada página; listas de proyectos en los catálogos. Se utiliza el teléfono real de DSM. Las migas de pan se incorporan al asignar el dominio.
+- URLs canónicas, `sitemap.xml` y su referencia en `robots.txt` cuando se configura `VITE_SITE_URL`. El sitemap contiene las nueve páginas públicas y puede incluir las fotos reales de las fichas cuando se reemplazan las imágenes ilustrativas.
+- Una página `404.html` con `noindex` y redirecciones permanentes de las antiguas fichas de entregados hacia sus proyectos dentro de la página común. La copia HTML portable de revisión también usa `noindex`.
+
+**Dominio pendiente:** dejá `VITE_SITE_URL` vacío hasta tener la dirección definitiva. Cuando la tengas, asigná una raíz HTTPS, por ejemplo `https://tu-dominio.com`, sin rutas, parámetros ni fragmentos, y volvé a compilar. No se generan enlaces canónicos ni un sitemap con un dominio de muestra. Las imágenes para compartir usan el logo real de DSM.
+
+**Datos locales pendientes:** para completar un perfil `LocalBusiness` hacen falta los datos reales del negocio, incluida su dirección pública. Por ahora se usa `Organization` con el área de atención Córdoba; no se inventan una dirección, coordenadas, reseñas ni valoraciones. Al publicar, verificá el dominio en Google Search Console, enviá el sitemap y vinculá el sitio con el Perfil de Empresa de Google de DSM si corresponde, manteniendo el mismo nombre y teléfono.
+
+El contenido busca responder dudas de quienes quieren conocer una vivienda. No se agregan repeticiones de palabras clave ni textos sin información útil.
+
+Documentación oficial: [SEO de JavaScript](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics), [imágenes](https://developers.google.com/search/docs/appearance/google-images) y [datos de negocios locales](https://developers.google.com/search/docs/appearance/structured-data/local-business).
 
 ## Cloudflare Pages
 
@@ -116,24 +150,31 @@ Configuración para un repositorio en GitHub/GitLab:
 | Build output directory | `dist` |
 | Root directory | Carpeta que contiene `package.json` |
 | Node | 22.12 o superior; configurá `NODE_VERSION` si hace falta |
-| Variable de contacto | `VITE_WHATSAPP_NUMBER` con el número de DSM |
+| Variable de contacto opcional | `VITE_WHATSAPP_NUMBER`; predeterminado `5493513067123` |
 | Variable de dominio | `VITE_SITE_URL` con el dominio definitivo |
 | Video común opcional | `VITE_YOUTUBE_TOUR_URL` con el enlace de un video o lista de YouTube |
 
-Se incluye `public/_redirects`, que llega a `dist/_redirects`, para resolver las rutas de React al abrir o recargar una ficha directamente. No agregues un `404.html` estático al directorio de salida de esta SPA. También se incluyen encabezados básicos y caché para los assets con nombre versionado.
+La compilación genera `en-venta.html`, `en-construccion.html`, `entregados.html`, `contacto.html` y `duplex/<id>.html`, además de `index.html`. Cloudflare Pages resuelve sus URLs sin la extensión `.html`, de modo que cada visita directa recibe el contenido de su página. Se incluye `404.html` para las rutas inexistentes; `dist/_redirects` contiene solo las redirecciones de las fichas antiguas de entregados. También se incluyen encabezados básicos y caché para los assets con nombre versionado.
 
-La carpeta `dist/` del ZIP es la compilación de muestra, **con el número de WhatsApp y los recorridos pendientes**. Para un Direct Upload definitivo, configurá el número y los videos, y generá nuevamente `dist/` con `npm run build` antes de subir esa carpeta. La copia `DSM_preview.html` no se usa como directorio de despliegue.
+La carpeta `dist/` del ZIP incluye el contacto de WhatsApp **5493513067123** y los recorridos de YouTube pendientes. Para un Direct Upload definitivo, configurá el dominio, asigná los videos y generá nuevamente `dist/` con `npm run build` antes de subir esa carpeta. La copia `DSM_preview.html` no se usa como directorio de despliegue.
 
 Documentación oficial: [build configuration](https://developers.cloudflare.com/pages/configuration/build-configuration/) y [serving Pages / SPA](https://developers.cloudflare.com/pages/configuration/serving-pages/).
 
 ## Verificación realizada
 
 - Compilación de producción con Vite.
-- 9 pruebas: 4 de mensajes/enlaces de WhatsApp y 5 de formatos de YouTube, destinos inválidos, listas y configuración del reproductor.
+- 15 pruebas: 4 de WhatsApp, 5 de YouTube y 6 de metadatos, dominio, datos estructurados, sitemap y escape seguro del HTML.
+- Las nueve páginas prerenderizadas se hidratan sin errores en un DOM simulado; cada una tiene un solo H1 y su título y descripción propios.
+- 68 enlaces directos a WhatsApp y 49 imágenes con `title`, `alt` y dimensiones verificados entre las nueve páginas. No se renderiza un popup de contacto con el número configurado.
+- 75 bloques de entrada animada verificados, con limpieza al cambiar de página y desactivación por movimiento reducido.
 - Comprobación de interacción en un DOM simulado: inicio sin la franja eliminada, dos entregados completos, collages ampliables y redirección de las antiguas fichas entregadas.
+- Contacto directo al número de DSM en las cinco páginas y las cuatro fichas, sin abrir el popup de consulta; formulario con destinatario y datos completos.
 - Apertura automática, cierre y reapertura del popup en la ficha de venta y las tres de construcción; cambio de obra sin conservar el video anterior.
 - Pruebas con enlaces de muestra solo en memoria: reproductor de YouTube, prioridad del video de cada obra, enlace de los entregados y alternativa de reproducción en el HTML local. No se guardaron esos videos en el catálogo.
+- Prueba de una galería con tres imágenes solo en memoria: mantiene dos portadas y permite recorrer todas las fotos. El acceso al video de cada entregado aparece antes del collage.
+- Metadatos y canonical al navegar entre páginas con un dominio de prueba solo en memoria; rutas inexistentes con `noindex` y sin datos estructurados de una obra.
 - Orden del inicio, cantidad de obras y ausencia de contenido de financiación en la implementación.
 - Sintaxis del JavaScript de la copia HTML e integración de imágenes y fuentes.
+- Ejecución del bundle exacto del HTML portable en un DOM simulado de archivo: cinco páginas, imágenes embebidas, carrusel, ficha, recorrido y enlaces de WhatsApp.
 
 **La revisión visual en un navegador real y la reproducción de los videos reales quedan pendientes.** Se comprobó la lógica del popup en un DOM simulado; las restricciones del entorno impidieron la revisión en navegador. Antes de publicar, usá `npm run preview`, recorré las páginas, probá el menú móvil, los collages y el formulario, y verificá los videos asignados y el número real de DSM.

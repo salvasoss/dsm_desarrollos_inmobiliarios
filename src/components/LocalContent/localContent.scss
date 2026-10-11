@@ -1,0 +1,26 @@
+@use '../../styles/tokens' as *;
+.local-content { padding-block: 88px; border-top: 1px solid $line; background: $paper; }
+.local-content__inner { display: grid; grid-template-columns: 1.15fr 1fr; gap: 90px; align-items: start; }
+.local-content__copy .eyebrow { color: $red; margin-bottom: 22px; }
+.local-content__copy .display { font-size: clamp(40px, 3.9vw, 58px); max-width: 650px; }
+.local-content__copy p { color: $muted; font-size: 13px; margin-top: 18px; line-height: 1.95; }
+.local-content__copy .local-content__lead { font-size: 15px; color: $ink; margin-top: 26px; }
+.local-content__links { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 26px; }
+.local-content__links .text-link { font-size: 11px; }
+.local-content__questions { background: #fff; padding: 33px; border: 1px solid $line; }
+.local-content__questions > .eyebrow { font-size: 8px; color: $muted; }
+.local-content__questions h3 { font-family: $serif; font-size: 34px; margin-block: 15px 28px; }
+.local-content__questions details { border-top: 1px solid $line; }
+.local-content__questions details:last-of-type { border-bottom: 1px solid $line; }
+.local-content__questions summary { display: flex; align-items: center; gap: 15px; list-style: none; padding-block: 21px; cursor: pointer; font-size: 12px; font-weight: 600; }
+.local-content__questions summary::-webkit-details-marker { display: none; }
+.local-content__question-number { color: $red; font-size: 10px; }
+.local-content__questions summary > .icon { width: 16px; height: 16px; margin-left: auto; transition: transform .25s; color: $red; }
+.local-content__questions details[open] summary > .icon { transform: rotate(45deg); }
+.local-content__questions details > p { font-size: 12px; color: $muted; line-height: 1.9; padding-bottom: 22px; }
+.local-content__contact { padding-top: 27px; }
+.local-content__contact > p { color: $muted; font-size: 11px; margin-bottom: 15px; }
+.local-content__contact .btn { width: 100%; }
+.local-content--compact { padding-block: 65px; }
+@media (max-width: 959px) { .local-content__inner { gap: 35px; } .local-content__questions { padding: 25px; } }
+@include mobile { .local-content, .local-content--compact { padding-block: 55px; } .local-content__inner { grid-template-columns: 1fr; gap: 35px; } .local-content__copy .display { font-size: 44px; } .local-content__copy p { font-size: 12px; } .local-content__copy .local-content__lead { font-size: 14px; } .local-content__questions { padding: 24px; } .local-content__questions h3 { font-size: 31px; } }

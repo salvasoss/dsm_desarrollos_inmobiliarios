@@ -4,6 +4,7 @@ import Footer from './components/Footer/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp/FloatingWhatsApp';
 import { WhatsAppProvider } from './components/WhatsAppButton/WhatsAppButton';
 import RouteEffects from './components/RouteEffects/RouteEffects';
+import ScrollReveal from './components/ScrollReveal/ScrollReveal';
 import Main from './pages/Main/Main';
 import EnVenta from './pages/EnVenta/EnVenta';
 import EnConstruccion from './pages/EnConstruccion/EnConstruccion';
@@ -37,6 +38,7 @@ export default function App() {
       <Footer />
       <FloatingWhatsApp />
       <RouteEffects />
+      <ScrollReveal />
     </WhatsAppProvider>
   );
 }

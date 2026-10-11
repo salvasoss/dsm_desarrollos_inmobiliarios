@@ -1,5 +1,5 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import { BrowserRouter, HashRouter } from 'react-router-dom';
 import '@fontsource-variable/manrope';
 import '@fontsource/cormorant-garamond/latin-400.css';
@@ -12,10 +12,13 @@ import './styles/global.scss';
 const Router = window.location.protocol === 'file:' || window.__DSM_HTML_PREVIEW__
   ? HashRouter : BrowserRouter;
 
-createRoot(document.getElementById('root')).render(
+const app = (
   <React.StrictMode>
     <Router>
       <App />
     </Router>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
+const root = document.getElementById('root');
+if (root.dataset.prerendered && !window.__DSM_HTML_PREVIEW__ && window.location.protocol !== 'file:') hydrateRoot(root, app);
+else createRoot(root).render(app);

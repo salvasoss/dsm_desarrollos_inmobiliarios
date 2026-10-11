@@ -1,4 +1,5 @@
 const paths = {
+  plus: <path d="M12 5v14M5 12h14" />,
   play: <><path d="m10 7 7 5-7 5Z" /><rect x="2" y="4" width="20" height="16" rx="3" /></>,
   arrow: <><path d="M4 12h15M14 6l6 6-6 6" /></>,
   diagonal: <><path d="M6 18 18 6M6 6h12v12" /></>,

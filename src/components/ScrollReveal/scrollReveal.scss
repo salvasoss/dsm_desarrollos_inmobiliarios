@@ -1,0 +1,5 @@
+// El contenido permanece visible sin JavaScript y antes de entrar en pantalla.
+@keyframes dsm-reveal { from { opacity: 0; transform: translate3d(0, 25px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+.scroll-reveal--visible { animation: dsm-reveal .72s cubic-bezier(.2, .65, .25, 1) var(--reveal-delay, 0ms) both; }
+.scroll-reveal:focus-within { animation: none; }
+@media (prefers-reduced-motion: reduce) { .scroll-reveal--visible { animation: none; transform: none; opacity: 1; } }

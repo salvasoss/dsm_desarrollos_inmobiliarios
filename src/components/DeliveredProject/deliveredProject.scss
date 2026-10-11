@@ -9,6 +9,10 @@
 .delivered-project__location .icon { width: 14px; height: 14px; }
 .delivered-project__summary { color: $muted; font-size: 13px; max-width: 450px; }
 .delivered-project__number { font-family: $serif; font-size: 88px; line-height: 1; color: #e7e5de; letter-spacing: -.05em; }
+.delivered-project__tour { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 19px 23px; margin-bottom: 22px; background: $paper; border: 1px solid $line; border-left: 3px solid $red; }
+.delivered-project__tour > span { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; }
+.delivered-project__tour > span > .icon { color: $red; }
+.delivered-project__tour .btn { min-height: 52px; }
 .delivered-project > .facts { padding-block: 25px; border-bottom: 1px solid $line; gap: 26px; }
 .delivered-project > .facts li span { font-size: 12px; }
 .delivered-project > .facts .icon { width: 22px; height: 22px; }
@@ -21,3 +25,4 @@
 .delivered-project__actions { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
 @media (max-width: 959px) { .delivered-project__heading { gap: 25px; } .delivered-project__number { display: none; } .delivered-project__information { gap: 30px; } .delivered-project__information ul { grid-template-columns: 1fr; } }
 @include mobile { .delivered-project { padding-block: 36px 48px; } .delivered-project__heading { grid-template-columns: 1fr; gap: 20px; margin-bottom: 26px; } .delivered-project__heading h2 { font-size: 49px; } .delivered-project__summary { font-size: 12px; } .delivered-project > .facts { gap: 16px; } .delivered-project > .facts li span { font-size: 10px; } .delivered-project__information { grid-template-columns: 1fr; gap: 22px; padding-block: 25px; } .delivered-project__actions { align-items: stretch; flex-direction: column; gap: 14px; } }
+@include mobile { .delivered-project__tour { flex-direction: column; align-items: stretch; gap: 15px; padding: 19px; } .delivered-project__tour .btn, .delivered-project__tour .youtube-link--pending { width: 100%; } }

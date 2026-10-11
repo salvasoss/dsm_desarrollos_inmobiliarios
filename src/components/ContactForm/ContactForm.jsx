@@ -25,7 +25,7 @@ export default function ContactForm() {
     else prepareMessage(message);
   }
   return <form className="contact-form" onSubmit={submit}>
-    <div className="contact-form__heading"><span className="eyebrow">Tu consulta</span><h2>Contanos qué estás buscando<span className="red-dot">.</span></h2><p>Completá el formulario y conversemos por WhatsApp.</p></div>
+    <div className="contact-form__heading"><span className="eyebrow">Tu consulta</span><h2>Contanos qué estás <span className="title-accent">buscando</span><span className="red-dot">.</span></h2><p>Completá el formulario y conversemos por WhatsApp.</p></div>
     <div className="contact-form__row">
       <div className="contact-form__field"><label htmlFor="contact-name">Tu nombre <span aria-hidden="true">*</span></label><input id="contact-name" name="name" type="text" placeholder="Nombre y apellido" autoComplete="name" value={values.name} onChange={changeValue} minLength={2} maxLength={80} required /></div>
       <div className="contact-form__field"><label htmlFor="contact-phone">Teléfono <span className="contact-form__optional">(opcional)</span></label><input id="contact-phone" name="phone" type="tel" placeholder="Código de área y número" autoComplete="tel" value={values.phone} onChange={changeValue} maxLength={30} /></div>

@@ -1,6 +1,8 @@
 @use '../../styles/tokens' as *;
 .youtube-link { gap: 12px; }
 .youtube-link .icon { width: 17px; height: 17px; }
-.youtube-link--pending { display: inline-flex; align-items: center; gap: 10px; color: $muted; padding: 12px 0; font-size: 11px; }
-.youtube-link--pending .icon { color: $red; }
-@include mobile { .youtube-link--pending { font-size: 10px; } }
+.youtube-link--pending { display: inline-flex; align-items: center; gap: 14px; color: $ink; padding: 14px 19px; border: 1px solid #dd263433; background: #dd263407; }
+.youtube-link__play { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; color: white; background: $red; }
+.youtube-link--pending strong { display: block; font-size: 12px; font-weight: 600; }
+.youtube-link--pending > div > span { display: block; margin-top: 3px; color: $muted; text-transform: uppercase; letter-spacing: .14em; font-size: 8px; }
+@include mobile { .youtube-link--pending { justify-content: center; } }

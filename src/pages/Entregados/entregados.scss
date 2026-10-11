@@ -1,2 +1,6 @@
 .delivered-catalog { padding-bottom: 86px; }
+.page-intro.delivered-intro { text-align: center; padding-block: 38px 70px; }
+.delivered-intro .display { max-width: 100%; margin-inline: auto; font-size: clamp(48px, 5.4vw, 78px); }
+.delivered-intro .intro { margin-inline: auto; max-width: 600px; font-size: 14px; }
+@media (max-width: 639px) { .page-intro.delivered-intro { padding-block: 25px 44px; } .delivered-intro .display { font-size: clamp(45px, 12vw, 58px); } .delivered-intro .intro { font-size: 13px; } }
 @media (max-width: 639px) { .delivered-catalog { padding-bottom: 56px; } }

@@ -1,1 +1,2 @@
-/* /index.html 200
+# La compilación genera HTML para cada ruta y una página 404.
+# scripts/prerender.mjs agrega redirecciones 301 de las antiguas fichas entregadas.

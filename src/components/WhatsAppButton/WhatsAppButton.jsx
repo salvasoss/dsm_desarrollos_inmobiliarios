@@ -14,6 +14,7 @@ export function WhatsAppProvider({ children }) {
   const dialog = useRef(null);
   const textarea = useRef(null);
   useEffect(() => {
+    if (!dialog.current) return;
     if (message !== null && !dialog.current.open) dialog.current.showModal();
     if (message === null && dialog.current.open) dialog.current.close();
   }, [message]);
@@ -32,17 +33,17 @@ export function WhatsAppProvider({ children }) {
   }
   return <WhatsAppContext.Provider value={{ prepareMessage }}>
     {children}
-    <dialog ref={dialog} className="contact-dialog" aria-labelledby="contact-dialog-title" aria-describedby="contact-dialog-description" onCancel={closeDialog} onClose={closeDialog} onClick={(event) => { if (event.target === event.currentTarget) closeDialog(); }}>
+    {!site.whatsappNumber && <dialog ref={dialog} className="contact-dialog" aria-labelledby="contact-dialog-title" aria-describedby="contact-dialog-description" onCancel={closeDialog} onClose={closeDialog} onClick={(event) => { if (event.target === event.currentTarget) closeDialog(); }}>
       <div className="contact-dialog__inner">
         <button type="button" className="contact-dialog__close" onClick={closeDialog} aria-label="Cerrar consulta"><Icon name="close" /></button>
         <span className="eyebrow">Consulta por WhatsApp</span>
-        <h2 id="contact-dialog-title">Tu mensaje está listo<span className="red-dot">.</span></h2>
+        <h2 id="contact-dialog-title">Tu mensaje está <span className="title-accent">listo</span><span className="red-dot">.</span></h2>
         <p id="contact-dialog-description">Esta versión de muestra todavía no tiene un número de contacto asignado. Podés revisar y copiar tu consulta.</p>
         <textarea ref={textarea} aria-label="Mensaje de consulta" value={message || ''} readOnly rows={6} />
         <button type="button" className="btn btn--primary" onClick={copyMessage}><Icon name={copied ? 'check' : 'copy'} />{copied ? 'Mensaje copiado' : 'Copiar consulta'}</button>
         <span className="contact-dialog__feedback" role="status">{copied ? 'El mensaje se copió al portapapeles.' : ''}</span>
       </div>
-    </dialog>
+    </dialog>}
   </WhatsAppContext.Provider>;
 }
 

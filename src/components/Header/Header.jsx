@@ -23,7 +23,7 @@ export default function Header() {
   return <header className="header" onKeyDown={handleKeyDown}>
     <div className="header__inner wrap">
       <Link to="/" className="header__brand" aria-label="DSM Desarrollos Inmobiliarios, ir al inicio">
-        <img src="/img/logo-dsm.svg" alt="DSM Desarrollos Inmobiliarios" width="84" height="70" />
+        <img src="/img/logo-dsm.svg" alt="DSM Desarrollos Inmobiliarios" title="DSM Desarrollos Inmobiliarios · Dúplex en Córdoba" width="84" height="70" />
       </Link>
       <nav id="navegacion-principal" className={`header__nav ${open ? 'is-open' : ''}`} aria-label="Navegación principal">
         {navigation.map(({ to, label }) => <NavLink key={to} to={to} end={to === '/'}>{label}</NavLink>)}

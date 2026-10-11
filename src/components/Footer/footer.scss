@@ -11,6 +11,7 @@
 .footer__contact .eyebrow { color: #b6b8b7; font-size: 8px; }
 .footer__contact p { font-family: $serif; font-size: 29px; line-height: 1.14; margin: 14px 0 10px; }
 .footer__contact .btn { font-size: 11px; }
+.footer__phone { display: block; font-size: 12px; margin-block: 15px 6px; color: #d6d8d7; }
 .footer__contact .icon { color: $red; width: 17px; height: 17px; }
 .footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 22px; border-top: 1px solid #ffffff1a; color: #a7abaa; font-size: 9px; }
 @media (max-width: 959px) { .footer__main { gap: 30px; } }
