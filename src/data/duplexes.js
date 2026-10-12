@@ -21,11 +21,44 @@ export const duplexes = [
       "Cochera para dos autos"
     ],
     "gallery": [
-      "exterior",
-      "interior"
+      "doctaIngreso",
+      "doctaLivingComedor",
+      "doctaCocina",
+      "doctaLiving",
+      "doctaLiving2",
+      "doctaLivingIngreso",
+      "doctaCocina2",
+      "doctaCocina3",
+      "doctaCocina4",
+      "doctaCocina5",
+      "doctaCocina6",
+      "doctaEscaleras",
+      "doctaEscaleras2",
+      "doctaEscaleras3",
+       "doctaBanoAbajo",
+      "doctaBanoAbajo2",
+      "doctaBanoAbajo3",
+      "doctaBanoAbajo4",
+      "doctaHabitacionAbajo",
+      "doctaHabitacionAbajo2",
+      "doctaHabitacionAbajo3",
+      "doctaArriba",
+      "doctaHabitacionArribaA",
+      "doctaHabitacionArribaA2",
+      "doctaBanoArriba",
+      "doctaBanoArriba2",
+      "doctaBanoArriba3",
+      "doctaBanoArriba4",
+      "doctaHabitacionSuite",
+      "doctaHabitacionSuite2",
+      "doctaHabitacionSuite3",
+      "doctaHabitacionSuiteVestidor",
+      "doctaHabitacionSuiteVestidor2",
+      "doctaHabitacionSuiteBano",
+      "doctaHabitacionSuiteBano2"
     ],
     "videoUrl": "",
-    "youtubeTourUrl": "",
+    "youtubeTourUrl": "https://www.youtube.com/watch?v=l3QcDQAFA18",
     "specs": [
       [
         "Aberturas",
@@ -50,7 +83,7 @@ export const duplexes = [
     ],
     "title": "Dúplex en Docta",
     "location": "Docta · Manzana 76, Lote 7 · Córdoba",
-    "cover": "exterior",
+    "cover": "doctaIngreso",
     "imagePosition": "center",
     "facts": [
       {
@@ -69,7 +102,8 @@ export const duplexes = [
         "icon": "area",
         "value": "186 m² vivienda según plano"
       }
-    ]
+    ],
+    "materialsImage": "doctaCocina"
   },
   {
     "id": "proyecto-dos-autos",

@@ -5,9 +5,9 @@
 .gallery__cover img { object-position: 40% center; }
 .gallery__expand { position: absolute; bottom: 28px; left: 24px; padding: 11px 16px; display: flex; align-items: center; gap: 9px; font-size: 10px; background: white; color: $ink; pointer-events: none; }
 .gallery__expand .icon { width: 16px; height: 16px; }
-.gallery__side { display: flex; flex-direction: column; gap: 18px; }
+.gallery__side { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
 .gallery__thumbnails { display: flex; gap: 12px; min-height: 200px; height: 220px; }
-.gallery__thumbnails .photo { flex: 1; height: 100%; }
+.gallery__thumbnails .photo { flex: 1; height: 100%; min-width: 0; }
 .gallery__contact { padding: 28px; background: $ink; color: white; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
 .gallery__contact .eyebrow { font-size: 8px; color: #c0c4c1; margin-bottom: 17px; letter-spacing: .18em; }
 .gallery__contact h2 { font-family: $serif; font-size: 35px; letter-spacing: -.025em; line-height: 1.06; max-width: 320px; }

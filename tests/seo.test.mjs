@@ -51,10 +51,13 @@ test('los datos estructurados contienen el contacto real y las obras visibles, s
   assert.equal(detail['@graph'].find((node) => node['@type'] === 'BreadcrumbList').itemListElement.length, 3);
 });
 
-test('el sitemap contiene solo las nueve URLs públicas y robots apunta al dominio asignado', () => {
+test('el sitemap contiene las nueve URLs públicas y las fotos reales, y robots apunta al dominio asignado', () => {
   const xml = createSitemap(settings);
   assert.equal([...xml.matchAll(/<loc>/g)].length, 9);
-  assert.doesNotMatch(xml, /\/duplex\/entregado-|\/404|<lastmod>|image:loc/);
+  assert.doesNotMatch(xml, /\/duplex\/entregado-|\/404|<lastmod>/);
+  assert.ok(xml.includes('<image:loc>https://dsm.test/img/docta/ingreso.webp</image:loc>'));
+  assert.ok(xml.includes('<image:loc>https://dsm.test/img/docta/cocina.webp</image:loc>'));
+  assert.doesNotMatch(xml, /\/img\/(?:exterior|interior|proyecto)\.webp/);
   assert.ok(xml.includes('<loc>https://dsm.test/en-venta</loc>'));
   assert.equal(createRobots(settings), 'User-agent: *\nAllow: /\n\nSitemap: https://dsm.test/sitemap.xml\n');
 });

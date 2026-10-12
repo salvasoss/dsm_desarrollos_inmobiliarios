@@ -19,9 +19,9 @@ export default function Gallery({ property }) {
 
   return <>
     <div className="gallery">
-      <div className="gallery__main"><Photo image={images[0]} priority onClick={() => openImage(0)} className="gallery__cover" label={`Ampliar imagen principal de ${property.title}`} /><span className="gallery__expand" aria-hidden="true"><Icon name="expand" />Ver galería · {images.length} {images.length === 1 ? 'imagen' : 'imágenes'}</span></div>
+      <div className="gallery__main"><Photo image={images[0]} priority onClick={() => openImage(0)} context={property.name} className="gallery__cover" label={`Ampliar imagen principal de ${property.title}`} /><span className="gallery__expand" aria-hidden="true"><Icon name="expand" />Ver galería · {images.length} {images.length === 1 ? 'imagen' : 'imágenes'}</span></div>
       <div className="gallery__side">
-        {images.length > 1 && <div className="gallery__thumbnails">{images.slice(1).map((image, index) => <Photo key={image.src} image={image} onClick={() => openImage(index + 1)} label={`Ampliar imagen ${index + 2} de ${property.title}`} />)}</div>}
+        {images.length > 1 && <div className="gallery__thumbnails">{images.slice(1, 3).map((image, index) => <Photo key={image.src} image={image} onClick={() => openImage(index + 1)} label={`Ampliar imagen ${index + 2} de ${property.title}`} />)}</div>}
         <div className={`gallery__contact ${images.length === 1 ? 'gallery__contact--full' : ''}`}>
           <span className="eyebrow">{available ? 'Conocelo en persona' : completed ? 'El compromiso de DSM' : 'Conocé el proyecto'}</span>
           <h2><AccentText text={available ? 'La calidad se aprecia de cerca.' : completed ? 'Una obra terminada. Nuevas posibilidades.' : 'La próxima etapa empieza acá.'} /></h2>

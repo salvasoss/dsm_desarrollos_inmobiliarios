@@ -22,7 +22,7 @@ export default function EnVenta() {
     </div>
     {featured?.specs?.length > 0 && <section className="section sale-quality"><div className="wrap">
       <div className="section-heading sale-quality__heading"><div><span className="eyebrow">La diferencia está en los detalles</span><h2 className="display">La <span className="title-accent">calidad</span> está<br />en lo que elegimos<span className="red-dot">.</span></h2></div><p>Desde la estructura hasta las terminaciones. Conocé los materiales y el equipamiento del dúplex disponible.</p></div>
-      <div className="sale-quality__images"><Photo image="interior" className="sale-quality__main" /><Photo image="exterior" className="sale-quality__detail" position="58% center" /></div>
+      <div className="sale-quality__images"><Photo image={featured.materialsImage || featured.cover} context={featured.name} className="sale-quality__main" /><Photo image={featured.cover} context={featured.name} className="sale-quality__detail" position="58% center" /></div>
       <div className="sale-quality__features"><span><Icon name="check" />Aberturas con DVH</span><span><Icon name="check" />Calefacción por radiadores</span><span><Icon name="check" />Terminaciones seleccionadas</span><Link to={`/duplex/${featured.id}#materiales`} className="text-link">Conocer los materiales<Icon name="arrow" /></Link></div>
     </div></section>}
     <LocalContent content={siteContent.sale} />
